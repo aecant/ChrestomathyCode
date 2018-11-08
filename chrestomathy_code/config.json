@@ -1,0 +1,72 @@
+{
+    "tasks_dir": "./tasks",
+    "ignored_extensions": [".json", ".txt", ".md", ".out"],
+    "languages": [
+        {
+            "name": "C",
+            "extension": ".c",
+            "compile": "gcc -O3 -o ${compiled_file} ${source_file}",
+            "run": "${compiled_file}"
+        },
+        {
+            "name": "Python",
+            "extension": ".py",
+            "run": "python3 ${source_file}"
+        },
+        {
+            "name": "Ruby",
+            "extension": ".rb",
+            "run": "ruby --disable-gems ${source_file}"
+        },
+        {
+            "name": "Swift",
+            "extension": ".swift",
+            "compile": "swiftc -O -o ${compiled_file} ${source_file}",
+            "run": "${compiled_file}"
+        },
+        {
+            "name": "Java",
+            "extension": ".java",
+            "compile": "javac -d ${compiled_dir} ${source_file}",
+            "run": "java -cp ${compiled_dir} ${source_without_ext}"
+        },
+        {
+            "name": "Rust",
+            "extension": ".rs",
+            "compile": "rustc -o ${compiled_file} ${source_file}",
+            "run": "${compiled_file}"
+        },
+        {
+            "name": "Go",
+            "extension": ".go",
+            "compile": "go build -o ${compiled_file} ${source_file}",
+            "run": "${compiled_file}"
+        },
+        {
+            "name": "Lua",
+            "extension": ".lua",
+            "run": "lua ${source_file}"
+        },
+        {
+            "name": "JavaScript",
+            "extension": ".js",
+            "run": "node ${source_file}"
+        },
+        {
+            "name": "C++",
+            "extension": ".cpp",
+            "compile": "g++ -O3 -o ${compiled_file} ${source_file}",
+            "run": "${compiled_file}"
+        },
+        {
+            "name": "PHP",
+            "extension": ".php",
+            "run": "php ${source_file}"
+        },
+        {
+            "name" : "Bash",
+            "extension": ".sh",
+            "run": "bash ${source_file}"
+        }
+    ]
+}

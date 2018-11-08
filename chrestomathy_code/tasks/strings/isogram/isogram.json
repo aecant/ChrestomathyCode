@@ -1,0 +1,6 @@
+[
+    { "args": "computer", "out": "_true_" },
+    { "args": "abcdefgh", "out": "_true_" },
+    { "args": "test", "out": "_false_" },
+    { "args": "Test", "out": "_false_" }
+]

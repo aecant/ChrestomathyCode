@@ -1,0 +1,11 @@
+[
+    { "args": "I topi non avevano nipoti", "out": "_true_" },
+    { "args": "oro", "out": "_true_" },
+    { "args": "anna", "out": "_true_" },
+    { "args": "ana", "out": "_true_" },
+    { "args": " ANa  ", "out": "_true_" },
+    { "args": " \t A*A", "out": "_true_" },
+    { "args": "A man, a plan, a canal: Panama!", "out": "_true_" },
+    { "args": "uacciu", "out": "_false_" },
+    { "args": "lkjashdfe", "out": "_false_" }
+]

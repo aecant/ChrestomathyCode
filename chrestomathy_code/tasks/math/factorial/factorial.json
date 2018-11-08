@@ -1,0 +1,12 @@
+[
+    { "args": 0,      "out": 1 },
+    { "args": 1,      "out": 1 },
+    { "args": 2,      "out": 2 },
+    { "args": 3,      "out": 6 },
+    { "args": 6,      "out": 720 },
+    { "args": 11,     "out": 39916800 },
+    { "args": 20,     "out": 2432902008176640000 },
+    
+    { "args": -1,     "out": "_invalid_" },
+    { "args": -123,   "out": "_invalid_" }
+]

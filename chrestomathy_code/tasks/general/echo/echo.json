@@ -1,0 +1,8 @@
+[
+    { "args": "eejhce", "out": "eejhce" },
+    { "args": "ccasjcas", "out": "ccasjcas" },
+    { "args": ",,,;;", "out": ",,,;;" },
+    { "args": "watch out", "out": "watch out" },
+    { "args": "èàñé?", "out": "èàñé?" },
+    { "args": ["hello", "world"], "out": "hello world" }
+]

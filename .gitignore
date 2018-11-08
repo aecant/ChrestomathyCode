@@ -1,0 +1,8 @@
+.idea
+.vscode
+
+venv
+**/__pycache__
+.mypy_cache
+prova.py
+.chrestomathy_cache

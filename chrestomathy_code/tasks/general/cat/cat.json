@@ -1,0 +1,14 @@
+[
+    { "in": "ciao", "out": "ciao" },
+    { "in": 1, "out": "1" },
+    { "in": 1, "out": 1 },
+    { "in": "1", "out": 1 },
+
+    { "file_in": "hello.txt", "out": "hello" },
+    { "file_in": "ciao.txt", "out": "ciao" },
+
+    { "args": "hello.txt", "out": "hello" },
+    { "args": "ciao.txt", "out": "ciao" },
+    { "args": ["hello.txt", "ciao.txt"], "out": "hellociao" },
+    { "args": ["ciao.txt", "hello.txt"], "out": "ciaohello" }
+]
