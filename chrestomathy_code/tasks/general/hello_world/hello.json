@@ -1,4 +1,8 @@
 [
     { "args": "", "out": "Hello World!" },
-    { "args": "the arguments are ignored", "out": "Hello World!" }
+    {
+        "args": "the arguments are ignored",
+        "in": "the input is ignored too",
+        "out": "Hello World!"
+    }
 ]
