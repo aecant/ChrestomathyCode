@@ -6,3 +6,17 @@ ChrestomathyCode is meant to be a chrestomathy for code. This project is inspire
 > The idea is to present solutions to the same task in as many different languages as possible, to demonstrate how languages are similar and different, and to aid a person with a grounding in one approach to a problem in learning another.
 
 On top of that, ChrestomathyCode provides a way to test and benchmark the code across different programming languages.
+
+
+## Usage
+You should have Python 3.7+ installed. For tests only pytest is needed.
+
+This will validate all the tasks
+```
+python chrestomathy_code.py
+```
+You can filter the tasks or the language
+```
+python chrestomathy_code.py java
+python chrestomathy_code.py factorial
+```
