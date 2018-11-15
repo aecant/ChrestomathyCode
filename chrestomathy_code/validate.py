@@ -4,7 +4,7 @@ from typing import List, Set
 import cache
 import code_run
 import language
-from task import Task
+from task import Task, Test
 
 
 def validate_all(tasks:                  List[Task],
@@ -40,12 +40,16 @@ def validate_task(task:     Task,
                 if not test.is_valid(result.stdout):
                     if all_ok:
                         print()
-                    all_ok = False
-                    print(f'\tfailed: for arguments {test.args!r}, '
-                          f'expected {test.expected_output!r}, got {result.stdout!r}')
-                    print(result.stderr)
+                        all_ok = False
+                    print_failure(test, result)
             if all_ok:
                 average_elapsed_ns = total_runtime_ns / len(task.tests)
                 print(f'ok: {average_elapsed_ns*1e-06:.0f} ms')
     except code_run.CompilationError:
         print(f'Failed to compile {source}')
+
+
+def print_failure(test: Test, result: code_run.ExecutionResult):
+    print(f'\tfailed: for arguments {test.args!r}, stdin {test.input!r}, '
+          f'expected {test.expected_output!r}, got {result.stdout!r}')
+    print(result.stderr, end='')

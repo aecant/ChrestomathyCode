@@ -10,7 +10,7 @@ from typing import List, Union, Optional
 @dataclass(frozen=True)
 class Task:
     name:       str
-    dirpath: Path
+    dirpath:    Path
     tests:      List[Test] = field(hash=False)
 
     @staticmethod

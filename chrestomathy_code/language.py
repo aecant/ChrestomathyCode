@@ -9,22 +9,6 @@ from typing import List
 import config
 
 
-def adapt_to_context(command: str, source_file: Path, compiled_file: Path = None) -> str:
-    substitutions = {
-        'source_file':          str(source_file),
-        'source_dir':           str(source_file.parent),
-        'source_without_ext':   source_file.stem
-    }
-    if compiled_file is not None:
-        substitutions.update(
-            {
-                'compiled_file':    str(compiled_file),
-                'compiled_dir':     str(compiled_file.parent)
-            }
-        )
-    return string.Template(command).substitute(substitutions)
-
-
 @dataclass(frozen=True)
 class Language:
     name:       str
@@ -40,3 +24,19 @@ class Language:
 
 def list_from_config() -> List[Language]:
     return [Language(**lang_dict) for lang_dict in config.LANGUAGES]
+
+
+def adapt_to_context(command: str, source_file: Path, compiled_file: Path = None) -> str:
+    substitutions = {
+        'source_file':          str(source_file),
+        'source_dir':           str(source_file.parent),
+        'source_without_ext':   source_file.stem
+    }
+    if compiled_file is not None:
+        substitutions.update(
+            {
+                'compiled_file':    str(compiled_file),
+                'compiled_dir':     str(compiled_file.parent)
+            }
+        )
+    return string.Template(command).substitute(substitutions)
