@@ -32,16 +32,17 @@ def validate_task(task:     Task,
             print(f'{source.name}: ', end='')
             all_ok = True
             total_runtime_ns = 0
-            run_cmd = language.adapt_to_context(
-                lang.run, source, compiled_file)
+            run_cmd = language.adapt_to_context(lang.run, source, compiled_file)
+
             for test in task.tests:
                 result = code_run.run(run_cmd, test, source.parent)
                 total_runtime_ns += result.runtime_ns
                 if not test.is_valid(result.stdout):
                     if all_ok:
-                        print()
+                        print()          # just formatting the ouput
                         all_ok = False
                     print_failure(test, result)
+
             if all_ok:
                 average_elapsed_ns = total_runtime_ns / len(task.tests)
                 print(f'ok: {average_elapsed_ns*1e-06:.0f} ms')

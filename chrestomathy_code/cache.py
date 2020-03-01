@@ -27,7 +27,7 @@ def get(source_file: Path) -> Optional[Path]:
     return _files_by_hash.get(hash)
 
 
-def add(source_file: Path, compiled_file: Path):
+def add(source_file: Path, compiled_file: Path) -> None:
     old_hash = _hashes_by_file.get(compiled_file)
     if old_hash:
         del _files_by_hash[old_hash]
