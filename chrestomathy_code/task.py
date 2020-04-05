@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Union, Optional
@@ -57,7 +56,7 @@ class Test:
     @staticmethod
     def _adapt_output(output) -> str:
         if isinstance(output, list):
-            return os.linesep.join(map(str, output))
+            return '\n'.join(map(str, output))
         return str(output).strip()
 
 

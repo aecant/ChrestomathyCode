@@ -10,5 +10,10 @@
     { "args": "hello.txt", "out": "hello" },
     { "args": "ciao.txt", "out": "ciao" },
     { "args": ["hello.txt", "ciao.txt"], "out": "hellociao" },
-    { "args": ["ciao.txt", "hello.txt"], "out": "ciaohello" }
+    { "args": ["ciao.txt", "hello.txt"], "out": "ciaohello" },
+
+    {
+        "args": "multi_line.txt",
+        "out": ["Hello", "This is a file", "Containing more than one line"]
+    }
 ]
