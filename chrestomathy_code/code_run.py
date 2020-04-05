@@ -11,6 +11,7 @@ import cache
 import task
 import language
 
+PROCESS_TIMEOUT_S = 5
 
 @contextlib.contextmanager
 def manage_compilation(compile_cmd: str, source: pathlib.Path) -> Iterator[Optional[pathlib.Path]]:
@@ -51,7 +52,7 @@ def execute(cmd: str, args: List[str] = None, **kwargs) -> ExecutionResult:
     cmd_list = cmd.split() + args
 
     start = time.perf_counter_ns()
-    result = subprocess.run(cmd_list, encoding='utf-8', timeout=5, **kwargs)
+    result = subprocess.run(cmd_list, encoding='utf-8', timeout=PROCESS_TIMEOUT_S, **kwargs)
     end = time.perf_counter_ns()
 
     return ExecutionResult(end - start, result.returncode, result.stdout, result.stderr)
