@@ -1,0 +1,7 @@
+[
+    { "args": [1, 1, 1], "out": "_true_" },
+    { "args": [1], "out": "_true_" },
+    { "args": [1, 1, 0], "out": "_false_" },
+    { "args": [0, 1], "out": "_false_" },
+    { "args": [0, 1, 0], "out": "_false_" }
+]
