@@ -6,3 +6,4 @@ venv
 .mypy_cache
 prova.py
 .chrestomathy_cache
+.chrestomathy_config.json
