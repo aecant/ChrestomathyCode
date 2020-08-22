@@ -53,6 +53,12 @@
             "run": "node ${source_file}"
         },
         {
+            "name" : "TypeScript",
+            "extension" : ".ts",
+            "compile" : "tsc --outFile ${compiled_file} ${source_file}",
+            "run" : "node ${compiled_file}"
+        },
+        {
             "name": "C++",
             "extension": ".cpp",
             "compile": "g++ -O3 -o ${compiled_file} ${source_file}",
