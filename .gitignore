@@ -1,6 +1,8 @@
 .idea
 .vscode
 
+/ChrestomathyCode.iml
+
 venv
 **/__pycache__
 .mypy_cache
