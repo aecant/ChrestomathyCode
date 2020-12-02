@@ -1,0 +1,7 @@
+[
+    { "args": "abcabcbb", "out": 3 },
+    { "args": "bbbbb", "out": 1 },
+    { "args": "pwwkew", "out": 3 },
+    { "args": "dvdf", "out": 3 },
+    { "args": " ", "out": 1 }
+]
