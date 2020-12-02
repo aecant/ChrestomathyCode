@@ -54,5 +54,5 @@ def _load_metadata() -> None:
 
 def _save_metadata() -> None:
     with METADATA_FILE.open('w') as fout:
-        json_data = {hash: str(path) for hash, path in _files_by_hash.items()}
+        json_data = { hash: str(path) for hash, path in _files_by_hash.items() }
         json.dump(json_data, fout)
