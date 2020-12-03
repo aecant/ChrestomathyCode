@@ -1,6 +1,6 @@
 {
     "tasks_dir": "./tasks",
-    "ignored_extensions": [".json", ".txt", ".md", ".out"],
+    "ignored_extensions": [".json", ".txt", ".md", ".out", ".swp"],
     "languages": [
         {
             "name": "C",

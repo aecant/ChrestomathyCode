@@ -52,5 +52,5 @@ def validate_task(task:     Task,
 
 def print_failure(test: Test, result: code_run.ExecutionResult):
     print(f'\tfailed: for arguments {test.args!r}, stdin {test.input!r}, '
-          f'expected {test.expected_output!r}, got {result.stdout!r}')
+          f'expected {test.expected_output!r}, got {result.stdout.strip()!r}')
     print(result.stderr, end='')
