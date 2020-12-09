@@ -15,3 +15,5 @@ with open(config_file) as fin:
 TASKS_DIR = BASEPATH / _config['tasks_dir']
 LANGUAGES: List[Dict] = _config['languages']
 IGNORED_EXTS: Set[str] = set(_config['ignored_extensions'])
+IGNORED_TASKS: List[str] = _config['ignored_tasks']
+

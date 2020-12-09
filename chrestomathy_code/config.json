@@ -1,6 +1,7 @@
 {
     "tasks_dir": "./tasks",
     "ignored_extensions": [".json", ".txt", ".md", ".out", ".swp"],
+    "ignored_tasks": ["**/.mypy_cache/**/*"],
     "languages": [
         {
             "name": "C",

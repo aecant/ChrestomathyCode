@@ -15,7 +15,7 @@ def validate_all(tasks:                  List[Task],
                      for lang in languages if lang.is_available()}
     with cache.manage_cache():
         for task in tasks:
-            for source in task.dirpath.glob('*.*'):
+            for source in task.dirpath.glob('[!.]*.*'):
                 ext = source.suffix
                 if ext in languages_ext:
                     validate_task(task, source, languages_ext[ext])

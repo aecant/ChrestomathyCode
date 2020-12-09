@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import json
+import fnmatch
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Union, Optional
+from typing import List, Union, Optional, Dict, Callable
+
+import config
 
 
 @dataclass(frozen=True)
@@ -47,11 +50,15 @@ class Test:
 
     @staticmethod
     def _adapt_input(dic: dict, task_dir: Path) -> Optional[str]:
-        file_in = dic.get('file_in')
-        if file_in is not None:
-            return (task_dir / file_in).read_text()
-        input = dic.get('in')
-        return None if input is None else str(input)
+        input_adapters: Dict[str, Callable[[str], str]] = {
+            'in': str,
+            'file_in': lambda file_name: (task_dir / file_name).read_text(),
+            'json_in': json.dumps
+        }
+        for input_type, adapter in input_adapters.items():
+            if input_ := dic.get(input_type):
+                return adapter(input_)
+        return None
 
     @staticmethod
     def _adapt_output(output) -> str:
@@ -60,9 +67,14 @@ class Test:
         return str(output).strip()
 
 
+def _is_excluded(task_file):
+    return any(fnmatch.fnmatch(str(task_file), pattern) for pattern in config.IGNORED_TASKS)
+
+
 def load_tasks(tasks_dir: Path) -> List[Task]:
     tasks = []
-    for task_file in tasks_dir.glob('**/*.json'):
+    task_files = (f for f in tasks_dir.rglob('*.json') if not(_is_excluded(f)))
+    for task_file in task_files:
         try:
             task = Task.from_json(task_file)
             tasks.append(task)
