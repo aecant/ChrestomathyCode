@@ -1,0 +1,5 @@
+[
+  { "args": "tree", "out": "eetr" },
+  { "args": "cccaaa", "out": "cccaaa" },
+  { "args": "Aabb", "out": "bbAa" }
+]
