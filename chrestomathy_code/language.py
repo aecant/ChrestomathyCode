@@ -1,42 +1,20 @@
-from __future__ import annotations
-
 import shutil
-import string
-from dataclasses import dataclass
-from pathlib import Path
-from typing import List
+from typing import Optional
 
 import config
+from models import Language
 
 
-@dataclass(frozen=True)
-class Language:
-    name:       str
-    extension:  str
-    run:        str
-    compile:    str = ''
-
-    def is_available(self):
-        cmd = self.compile if self.compile else self.run
-        to_check = cmd.split()[0]
-        return shutil.which(to_check) is not None
+def parse_config() -> list[Language]:
+    return list(map(_get_lang_from_dict, config.LANGUAGES))
 
 
-def list_from_config() -> List[Language]:
-    return [Language(**lang_dict) for lang_dict in config.LANGUAGES]
+def _get_lang_from_dict(lang_dict):
+    is_available = _is_available(lang_dict['run'], lang_dict.get('compile'))
+    return Language(**lang_dict, is_available=is_available)
 
 
-def adapt_to_context(command: str, source_file: Path, compiled_file: Path = None) -> str:
-    substitutions = {
-        'source_file':          str(source_file),
-        'source_dir':           str(source_file.parent),
-        'source_without_ext':   source_file.stem
-    }
-    if compiled_file is not None:
-        substitutions.update(
-            {
-                'compiled_file':    str(compiled_file),
-                'compiled_dir':     str(compiled_file.parent)
-            }
-        )
-    return string.Template(command).substitute(substitutions)
+def _is_available(run_cmd: str, compile_cmd: Optional[str]) -> bool:
+    cmd = compile_cmd or run_cmd
+    to_check = cmd.split()[0]
+    return shutil.which(to_check) is not None

@@ -1,18 +1,16 @@
-from __future__ import annotations
-
 import contextlib
 import hashlib
 import json
 from pathlib import Path
-from typing import Dict, Iterator, Optional
+from typing import Iterator, Optional
 
 import config
 
-CACHE_DIR = config.BASEPATH / '.chrestomathy_cache'
-METADATA_FILE = CACHE_DIR / 'metadata.json'
+_CACHE_DIR = config.BASE_PATH / '.chrestomathy_cache'
+_METADATA_FILE = _CACHE_DIR / 'metadata.json'
 
-_files_by_hash: Dict[str, Path] = {}
-_hashes_by_file: Dict[Path, str] = {}
+_files: dict[str, Path] = {}
+_hashes: dict[Path, str] = {}
 
 
 @contextlib.contextmanager
@@ -23,36 +21,39 @@ def manage_cache() -> Iterator[None]:
 
 
 def get(source_file: Path) -> Optional[Path]:
-    hash = _compute_hash(source_file)
-    return _files_by_hash.get(hash)
+    return _files.get(_compute_hash(source_file))
 
 
 def add(source_file: Path, compiled_file: Path) -> None:
-    old_hash = _hashes_by_file.get(compiled_file)
+    old_hash = _hashes.get(compiled_file)
     if old_hash:
-        del _files_by_hash[old_hash]
-        del _hashes_by_file[compiled_file]
+        del _files[old_hash]
+        del _hashes[compiled_file]
 
-    hash = _compute_hash(source_file)
-    _files_by_hash[hash] = compiled_file
-    _hashes_by_file[compiled_file] = hash
+    hash_ = _compute_hash(source_file)
+    _files[hash_] = compiled_file
+    _hashes[compiled_file] = hash_
 
 
-def _compute_hash(file: Path) -> str:
-    bytes = file.read_bytes()
-    return hashlib.sha256(bytes).hexdigest()
+def get_compiled_file_path(source: Path) -> Path:
+    return _CACHE_DIR / source.name.replace('.', '_')
 
 
 def _load_metadata() -> None:
-    CACHE_DIR.mkdir(exist_ok=True)
-    with contextlib.suppress(FileNotFoundError), METADATA_FILE.open() as fin:
+    _CACHE_DIR.mkdir(exist_ok=True)
+    with contextlib.suppress(FileNotFoundError), _METADATA_FILE.open() as fin:
         json_data = json.load(fin)
-        for hash, path in json_data.items():
-            _files_by_hash[hash] = Path(path)
-            _hashes_by_file[Path(path)] = hash
+        for hash_, path_str in json_data.items():
+            path = Path(path_str)
+            _files[hash_] = path
+            _hashes[path] = hash_
+
+
+def _compute_hash(file: Path) -> str:
+    return hashlib.sha256(file.read_bytes()).hexdigest()
 
 
 def _save_metadata() -> None:
-    with METADATA_FILE.open('w') as fout:
-        json_data = { hash: str(path) for hash, path in _files_by_hash.items() }
+    with _METADATA_FILE.open('w') as fout:
+        json_data = {hash_: str(path) for hash_, path in _files.items()}
         json.dump(json_data, fout)

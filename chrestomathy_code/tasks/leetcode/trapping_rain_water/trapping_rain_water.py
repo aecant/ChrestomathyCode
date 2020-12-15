@@ -1,8 +1,7 @@
 import sys
-from typing import List
 
 
-def count_half(height: List[int]) -> int:
+def count_half(height: list[int]) -> int:
     sorted_tuples = sorted(enumerate(height), key=lambda t: t[1])
     max_pos = 0
     trapped = 0
@@ -21,7 +20,7 @@ def count_half(height: List[int]) -> int:
     return trapped
 
 
-def count_trap_water(height: List[int]) -> int:
+def count_trap_water(height: list[int]) -> int:
     if not height:
         return 0
 

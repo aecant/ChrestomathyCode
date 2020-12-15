@@ -9,7 +9,7 @@ On top of that, ChrestomathyCode provides a way to test and benchmark the code a
 
 
 ## Usage
-You should have Python 3.7+ installed. For tests only pytest is needed.
+You should have Python 3.9+ installed. For tests only pytest is needed.
 
 This will validate all the tasks
 ```
