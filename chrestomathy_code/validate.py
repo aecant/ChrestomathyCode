@@ -2,7 +2,6 @@ from pathlib import Path
 
 import cache
 import code_run
-import language
 from task import is_valid
 from models import Task, Test, ExecutionResult, Language, CompilationError
 

@@ -38,11 +38,11 @@ def _from_json_dict(dic: dict, task_dir: Path):
 
 
 def _adapt_args(args: Union[str, list[str]]) -> list[str]:
+    if args is None:
+        return []
     if isinstance(args, list):
         return list(map(str, args))
-    if isinstance(args, str):
-        return [args]
-    return []
+    return [str(args)]
 
 
 def _adapt_input(dic: dict, task_dir: Path) -> Optional[str]:

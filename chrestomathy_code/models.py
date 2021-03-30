@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
@@ -23,7 +23,7 @@ class Language:
     extension: str
     run: str
     is_available: bool
-    compile: str = None
+    compile: Optional[str] = None
 
 
 @dataclass
